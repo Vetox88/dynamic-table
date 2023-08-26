@@ -1,14 +1,5 @@
-//what will a header contains: 
-// _search bar
-// -the switch button
-// -name 
-//- asd and desd order 
-// header/header.js
-// header/header.js
 import React from 'react';
 import styled from 'styled-components';
-
-
 
 const Button = styled.button`
 background-color: ${props => props.theme.background};
@@ -60,10 +51,8 @@ const ModeSwitchText = styled.p`
   font-size: 14px;
 `;
 
-
-
 const HeaderWrapper = styled.div`
-  width: 100%;
+  width: 97.6%;
   background-color: #333; /* Just an example background color */
   color: white;
   padding: 20px;

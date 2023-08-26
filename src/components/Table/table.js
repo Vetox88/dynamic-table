@@ -13,8 +13,11 @@ const StyledTable = styled.table`
   }
 
   th {
-    background-color: #f5f5f5;
-    font-weight: 600;
+    th {
+      background-color: ${(props) => props.theme.headerBgColor};
+      color: ${(props) => props.theme.headerTextColor};
+      font-weight: 600;
+    }
   }
 
   th button {
@@ -36,73 +39,83 @@ const StatusCircle = styled.div`
 const Table = ({ users, sortTable, formatDate }) => {
   const sortableColumns = ["name", "status"];
   const sortUsersByStatus = (users, sortOrder) => {
-  return [...users].sort((a, b) => {
-    if (a.status === "online" && b.status !== "online") {
-      return sortOrder === "asc" ? -1 : 1;
+    return [...users].sort((a, b) => {
+      if (a.status === "online" && b.status !== "online") {
+        return sortOrder === "asc" ? -1 : 1;
+      }
+      if (a.status !== "online" && b.status === "online") {
+        return sortOrder === "asc" ? 1 : -1;
+      }
+      return 0;
+    });
+  };
+
+  const sortUsersByColumn = (users, column, sortOrder) => {
+    return [...users].sort((a, b) => {
+      const aValue = a[column];
+      const bValue = b[column];
+      return sortOrder === "asc"
+        ? aValue.localeCompare(bValue)
+        : bValue.localeCompare(aValue);
+    });
+  };
+
+  const customSort = (users, column, sortOrder) => {
+    let sortedUsers;
+    if (column === "status") {
+      sortedUsers = sortUsersByStatus(users, sortOrder);
+    } else {
+      sortedUsers = sortUsersByColumn(users, column, sortOrder);
     }
-    if (a.status !== "online" && b.status === "online") {
-      return sortOrder === "asc" ? 1 : -1;
-    }
-    return 0;
-  });
-};
 
-const sortUsersByColumn = (users, column, sortOrder) => {
-  return [...users].sort((a, b) => {
-    const aValue = a[column];
-    const bValue = b[column];
-    return sortOrder === "asc" ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
-  });
-};
-
-const customSort = (users, column, sortOrder) => {
-  let sortedUsers;
-  if (column === "status") {
-    sortedUsers = sortUsersByStatus(users, sortOrder);
-  } else {
-    sortedUsers = sortUsersByColumn(users, column, sortOrder);
-  }
-
-  sortTable(sortedUsers);
-};
+    sortTable(sortedUsers);
+  };
 
   return (
     <StyledTable>
-    <thead>
-      {users && users.length > 0 && Object.keys(users[0]).map((column) => (
-        <th key={column}>
-          {column}
-          {sortableColumns.includes(column) && (
-            <>
-              <button onClick={() => sortTable({ column, order: "asc" })}>
-                ↑
-              </button>
-              <button onClick={() => sortTable({ column, order: "desc" })}>
-                ↓
-              </button>
-            </>
-          )}
-        </th>
-      ))}
-    </thead>
-    <tbody>
-      {users && users.map((user) => (
-        <tr key={user.id}>
-          {Object.keys(user).map((key) => (
-            <td key={key}>
-              {key === "created" ? (
-                formatDate(user[key])
-              ) : key === "status" ? (
-                <StatusCircle online={user[key] === "online"} />
-              ) : (
-                user[key]
-              )}
-            </td>
+      <thead>
+        {users && users.length > 0 && (
+          <tr>
+            {Object.keys(users[0]).map((column) => (
+              <th key={column}>
+                {column}
+                {sortableColumns.includes(column) && (
+                  <>
+                    <button onClick={() => sortTable({ column, order: "asc" })}>
+                      ↑
+                    </button>
+                    <button
+                      onClick={() => sortTable({ column, order: "desc" })}
+                    >
+                      ↓
+                    </button>
+                  </>
+                )}
+              </th>
+            ))}
+          </tr>
+        )}
+      </thead>
+
+      <tbody>
+        {users &&
+          users.map((user) => (
+            <tr key={user.id}>
+              {Object.keys(user).map((key) => (
+                <td key={key}>
+                  {key === "created" ? (
+                    formatDate(user[key])
+                  ) : key === "status" ? (
+                    <StatusCircle online={user[key] === "online"} />
+                  ) : (
+                    user[key]
+                  )}
+                </td>
+              ))}
+            </tr>
           ))}
-        </tr>
-      ))}
-    </tbody>
-  </StyledTable>
+      </tbody>
+    </StyledTable>
   );
 };
 
