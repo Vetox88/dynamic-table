@@ -4,7 +4,7 @@ import PostTable from "./PostTable";
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './theme';
 import Header from './components/Header/index'
-import { Container } from './styles'; // Import your styled components
+import { Container } from './styles';
 
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
