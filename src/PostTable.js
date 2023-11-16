@@ -8,7 +8,7 @@ const UsersTable = ({ searchValue }) => {
   const [currentPage, setCurrentPage] = useState(1); 
   const [isLoading, setIsLoading] = useState(true); 
   
-  const usersPerPage = 30; // Number of users to display per page
+  const usersPerPage = 30;
 
   const sortTable = (newSorting) => {
     setSorting(newSorting);
