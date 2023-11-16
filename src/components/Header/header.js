@@ -86,7 +86,6 @@ const Header = ({ isDarkMode, toggleTheme, searchValue, setSearchValue }) => {
           {isDarkMode ? "☀️" : "🌙"}
         </ModeSwitchText>
         <Button isOn={isDarkMode} onClick={toggleTheme}>
-          {/* You can add an icon or label here */}
         </Button>
       </HeaderRight>
     </HeaderWrapper>
