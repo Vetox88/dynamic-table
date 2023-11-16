@@ -1,13 +1,11 @@
 import styled from 'styled-components';
 
-// Create a Container component
 const Container = styled.div`
   background-color: ${props => props.theme.background};
   color: ${props => props.theme.text};
   padding: 20px;
 `;
 
-// Create a Button component
 const Button = styled.button`
 background-color: ${props => props.theme.background};
 color: ${props => props.theme.text};
@@ -37,6 +35,5 @@ transition: background-color 0.3s, color 0.3s;
 }
 `;
 
-// ... Other styled components
 
-export { Container, Button }; // Export your styled components
+export { Container, Button };
