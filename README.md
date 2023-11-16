@@ -4,7 +4,7 @@ Welcome to the **dynamic-table** React project! This project is designed to prov
 
 # Data Update and Pagination
 
-I've enriched the JSON file containing posts with additional data to provide a more comprehensive range of driving experiences within the app. This expanded dataset contributes to a more engaging user experience.
+The JSON file containing posts with additional data to provide a more comprehensive range of driving experiences within the app. This expanded dataset contributes to a more engaging user experience.
 
 The new data enables the effective implementation of pagination, allowing users to navigate through the posts in smaller, manageable groups. With pagination in place, users can easily move between different pages of posts, enhancing the overall usability of DriveXperience.
 
