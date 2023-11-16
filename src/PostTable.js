@@ -5,8 +5,8 @@ import Pagination from './components/PaginationWrapper/index';
 const UsersTable = ({ searchValue }) => {
   const [users, setUsers] = useState([]);
   const [sorting, setSorting] = useState({ column: 'id', order: 'asc' });
-  const [currentPage, setCurrentPage] = useState(1); // Track current page
-  const [isLoading, setIsLoading] = useState(true); // Track loading state
+  const [currentPage, setCurrentPage] = useState(1); 
+  const [isLoading, setIsLoading] = useState(true); 
   
   const usersPerPage = 30; // Number of users to display per page
 
@@ -21,7 +21,7 @@ const UsersTable = ({ searchValue }) => {
   
 
   useEffect(() => {
-    setIsLoading(true); // Show loader while fetching data
+    setIsLoading(true); 
     
     const url = `http://localhost:3001/posts?`;
     const sortedUrl = `${url}_sort=${sorting.column}&_order=${sorting.order}&q=${searchValue}`;
@@ -30,11 +30,11 @@ const UsersTable = ({ searchValue }) => {
       .then((res) => res.json())
       .then((users) => {
         setUsers(users);
-        setIsLoading(false); // Hide loader when data is fetched
+        setIsLoading(false); 
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
-        setIsLoading(false); // Hide loader on error as well
+        setIsLoading(false);
       });
   }, [sorting, searchValue]);
 
@@ -47,7 +47,6 @@ const UsersTable = ({ searchValue }) => {
 
   return (
     <div>
-      {/* Pass only the current users to the Table component */}
       {isLoading ? (
         <p>Loading...</p>
       ) : currentUsers.length > 0 ? (
@@ -56,7 +55,6 @@ const UsersTable = ({ searchValue }) => {
         <p>No data available.</p>
       )}
       
-      {/* Pagination controls */}
       <Pagination
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
