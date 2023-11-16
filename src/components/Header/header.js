@@ -37,12 +37,12 @@ const SearchBar = styled.input`
   background-color: #f5f5f5;
   color: #333;
   font-size: 14px;
-  width: 250px; /* Adjust the width as needed */
+  width: 250px; 
   transition: border-color 0.3s;
 
   &:focus {
     outline: none;
-    border-color: #2196f3; /* Material UI primary color */
+    border-color: #2196f3; 
   }
 `;
 
@@ -53,7 +53,7 @@ const ModeSwitchText = styled.p`
 
 const HeaderWrapper = styled.div`
   width: 97.6%;
-  background-color: #333; /* Just an example background color */
+  background-color: #333; 
   color: white;
   padding: 20px;
   display: flex;
@@ -62,7 +62,7 @@ const HeaderWrapper = styled.div`
 `;
 
 const Title = styled.h1`
-  margin: 0; /* Remove default margin from h1 element */
+  margin: 0; 
 `;
 
 const HeaderRight = styled.div`
